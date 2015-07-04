@@ -3,7 +3,7 @@
     var ContactSchema = mongoose.Schema({
       // user model id. represents whose address book contains
       // this projection of the contact.
-      // ownerId: mongoose.Schema.Types.ObjectId,
+      ownerId: mongoose.Schema.Types.ObjectId,
       name: {
         type: String
       },
