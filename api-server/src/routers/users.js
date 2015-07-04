@@ -10,10 +10,33 @@
       .post(createUser);
 
     router.route('/:number')
-      .get(getUserByNumber);
+      .get(getUserByNumber)
+      .put(updateUserByNumber);
 
     function nothing (req, res) {
       res.json({message: 'There is nothing to see here.'});
+    }
+
+    function updateUserByNumber (req, res) {
+      var number = util.makeTwilioNumber(req.params.number);
+      if (!number) {
+        res.status(400).json({
+          error: 'Please specify a phone number /users/+15551234567'
+        });
+        return;
+      }
+      Models.User.findOneAndUpdate({"twilio.number": number}, {
+        $set: req.body
+      }, function(err, results) {
+        if (err) {
+          res.sendStatus(500);
+          return;
+        }
+        res.json({
+          success: 'User: ' + number + ' was updated.',
+          data: results
+        });
+      });
     }
 
     function getUserByNumber (req, res) {
