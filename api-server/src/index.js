@@ -18,7 +18,10 @@ app.use('/contacts', ContactsRouter);
 app.use('/users', UsersRouter);
 
 app.get('/', function(req, res) {
-  res.send('Hello World!!!!!!');
+  res.json({
+    version: '0.0.1',
+    status: 'online'
+  });
 });
 
 if (require.main === module) {
