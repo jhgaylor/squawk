@@ -1,0 +1,34 @@
+{
+  "name": "squawk-api-server",
+  "version": "0.0.1",
+  "description": "An API server to power Squawk clients.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhgaylor/squawk"
+  },
+  "keywords": [
+    "sms",
+    "desktop"
+  ],
+  "author": "Jake Gaylor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jhgaylor/squawk/issues"
+  },
+  "homepage": "https://github.com/jhgaylor/squawk",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jasmine": "^2.0.1",
+    "gulp-jscs": "^1.6.0",
+    "gulp-shell": "^0.4.2",
+    "gulp-ssh": "^0.4.1",
+    "moment": "^2.10.3"
+  },
+  "dependencies": {
+    "express": "^4.13.0"
+  }
+}
