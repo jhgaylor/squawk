@@ -73,6 +73,10 @@ gulp.task('push-to-docker-hub', shell.task([
   'docker push ' + docker.imageRepo
 ]));
 
+gulp.task('deploy-local-mac', shell.task([
+  'docker run -d --name ' + docker.containerName + ' -p 4000:3000 ' + docker.imageRepo + ':latest'
+]));
+
 // Deploys the most recent build but does not make a build
 gulp.task('deploy', ['push-to-docker-hub'], function deploy () {
   // SSH to the server - pull image & swap running container
