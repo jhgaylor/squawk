@@ -63,6 +63,7 @@ gulp.task('compile', ['lint', 'test'], function test () {
 // create a docker image from the compiled source code
 // and remove the compiled code
 gulp.task('build', ['compile'], shell.task([
+  'docker rmi ' + docker.imageRepo,
   'docker build -t ' + docker.imageRepo + ' .',
   'rm -rf dist/'
 ]));
@@ -86,6 +87,29 @@ gulp.task('deploy', ['push-to-docker-hub'], function deploy () {
       'docker ps'
     ], {
       filePath: 'deploy' + moment().format('MMDDYYYY_HHmmss') + '.log'
+    })
+    .pipe(gulp.dest('logs'));
+});
+
+gulp.task('stop-app', function deploy () {
+  // SSH to the server - pull image & swap running container
+  return gulpSSH
+    .exec([
+      'docker stop ' + docker.containerName,
+      'docker ps'
+    ], {
+      filePath: 'stop' + moment().format('MMDDYYYY_HHmmss') + '.log'
+    })
+    .pipe(gulp.dest('logs'));
+});
+
+gulp.task('start-app', function deploy () {
+  return gulpSSH
+    .exec([
+      'docker run -d --name ' + docker.containerName + ' -p 4000:3000 ' + docker.imageRepo + ':latest',
+      'docker ps'
+    ], {
+      filePath: 'start' + moment().format('MMDDYYYY_HHmmss') + '.log'
     })
     .pipe(gulp.dest('logs'));
 });
