@@ -28,23 +28,26 @@ var gulpSSH = require('gulp-ssh')({
   }
 });
 
+// Options used for building and deploying docker images
 var docker = {
   imageRepo: 'jhgaylor/squawk-api-server',
   containerName: 'squawk-api-server'
 };
 
-var sourceBlob = 'src/**/*.js';
+var appSourceBlob = 'src/**/*.js';
 var testSpecBlob = 'spec/main.js';
 
 gulp.task('default', ['lint', 'test'], function defaultTask () {
   return 1;
 });
 
+// Lints the source code
 gulp.task('lint', function defaultTask () {
-  return gulp.src(sourceBlob)
+  return gulp.src(appSourceBlob)
       .pipe(jscs());
 });
 
+// Runs the tests
 gulp.task('test', function test () {
   return gulp.src(testSpecBlob)
       .pipe(jasmine());
@@ -53,15 +56,18 @@ gulp.task('test', function test () {
 // currently doesn't do anything to the source code, but
 // provides an easy place to add traceur or a less compiler
 gulp.task('compile', ['lint', 'test'], function test () {
-  return gulp.src(sourceBlob)
+  return gulp.src(appSourceBlob)
       .pipe(gulp.dest('dist'));
 });
 
+// create a docker image from the compiled source code
+// and remove the compiled code
 gulp.task('build', ['compile'], shell.task([
   'docker build -t ' + docker.imageRepo + ' .',
   'rm -rf dist/'
 ]));
 
+// Pushes the most recent build of the docker image to docker hub
 gulp.task('push-to-docker-hub', shell.task([
   'docker push ' + docker.imageRepo
 ]));
@@ -85,6 +91,6 @@ gulp.task('deploy', ['push-to-docker-hub'], function deploy () {
 });
 
 gulp.task('watch', function watch () {
-  gulp.watch(sourceBlob, ['lint', 'test']);
+  gulp.watch(appSourceBlob, ['lint', 'test']);
   return 1;
 });
