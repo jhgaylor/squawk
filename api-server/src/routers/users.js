@@ -5,7 +5,8 @@
   function makeRouter (Models) {
     var router = require('express').Router();
     router.route('/')
-      .get(nothing);
+      .get(nothing)
+      .post(createUser);
 
     router.route('/:number')
       .get(getUserByNumber);
@@ -40,6 +41,16 @@
         res.status(404).json({
           error: 'No user matching the specified number was found. Please register.'
         });
+      });
+    }
+
+    function createUser (req, res) {
+      Models.User.create(req.body, function(err, results) {
+        if (err) {
+          res.sendStatus(500);
+          return;
+        }
+        res.status(201).json(results);
       });
     }
 
