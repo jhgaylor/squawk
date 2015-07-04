@@ -4,9 +4,9 @@
   function makeModels (mongoose) {
     var Schemas = require('./schemas/schemas')(mongoose);
     var models = {
-      User: mongoose.model('User', Schemas.User),
-      Contact: mongoose.model('Contact', Schemas.Contact),
-      Message: mongoose.model('Message', Schemas.Message),
+      User: mongoose.model('users', Schemas.User),
+      Contact: mongoose.model('contacts', Schemas.Contact),
+      Message: mongoose.model('messages', Schemas.Message)
     };
     return models;
   }
