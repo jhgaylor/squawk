@@ -26,7 +26,8 @@
     "gulp-jscs": "^1.6.0",
     "gulp-shell": "^0.4.2",
     "gulp-ssh": "^0.4.1",
-    "moment": "^2.10.3"
+    "moment": "^2.10.3",
+    "supertest": "^1.0.1"
   },
   "dependencies": {
     "body-parser": "^1.13.1",
