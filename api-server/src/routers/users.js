@@ -25,7 +25,7 @@
         });
         return;
       }
-      Models.User.findOneAndUpdate({"twilio.number": number}, {
+      Models.User.findOneAndUpdate({'twilio.number': number}, {
         $set: req.body
       }, function(err, results) {
         if (err) {
