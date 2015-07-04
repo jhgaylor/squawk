@@ -10,6 +10,8 @@ Please note that nothing is locked down. Only use the server if you are comforta
 
 # Endpoints
 
+Incoming requests should have a header `Content-Type` set to `application/json` and send JSON strings in the request body. Responses will be in JSON format and the API will attempt to give intelligent status codes.
+
 ## Contacts
 
 ### GET /contacts
