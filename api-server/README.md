@@ -1,5 +1,9 @@
 # Squawk Api Server
 
+# Environment Variables
+
+`MONGO_URL`: url to the mongodb instance
+
 ## Gulp Commands
 
 ### gulp
