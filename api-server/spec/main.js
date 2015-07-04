@@ -25,18 +25,14 @@ describe('Squawk Api Server', function() {
 
   it('allows looking up a single user', function(done) {
     Models.User.findOne({'profile.firstName': 'TEST'}, function(err, user) {
-      expect(user).toBeDefined();
-      expect(user.twilio).toBeDefined();
-      expect(user.twilio.number).toBeDefined();
+      expect(user && user.twilio && user.twilio.number).toBeDefined();
       var userNumber = user.twilio.number;
       SquawkServerApp
         .get('/users/' + userNumber)
         .end(function(err, res) {
           expect(err).toBe(null);
           expect(res.body.data).toBeDefined;
-          var data = res.body.data;
-          expect(data).toBeDefined()
-          expect(data.twilio.number).toEqual(userNumber)
+          expect(res.body.data.twilio.number).toEqual(userNumber)
           done();
         });
     });
