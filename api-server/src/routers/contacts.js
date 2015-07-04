@@ -5,8 +5,12 @@
   function makeRouter (Models) {
     var router = require('express').Router();
     router.route('/')
-      .get(function(req, res) {
-        res.json({message: 'hooray! welcome to our clients api endpoint!'});
+      .get(function(req, response) {
+        Models.Contact.find({}, function(err, res) {
+          response.json({
+            data: res
+          });
+        });
       });
     return router;
   }
