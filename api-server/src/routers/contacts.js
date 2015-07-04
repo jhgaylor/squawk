@@ -6,7 +6,12 @@
     var router = require('express').Router();
     router.route('/')
       .get(function(req, response) {
-        Models.Contact.find({}, function(err, res) {
+        var ownerId = req.query.ownerId;
+        var selector = {};
+        if (ownerId) {
+          selector.ownerId = ownerId;
+        }
+        Models.Contact.find(selector, function(err, res) {
           response.json({
             data: res
           });
