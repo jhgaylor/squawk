@@ -3,21 +3,18 @@
     var ContactSchema = mongoose.Schema({
       // user model id. represents whose address book contains
       // this projection of the contact.
-      ownerId: mongoose.Schema.Types.ObjectId,
+      // ownerId: mongoose.Schema.Types.ObjectId,
       name: {
-        type: String,
-        lowercase: true
+        type: String
       },
-      phoneNumber: {
-        number: {
-          type: String,
-          required: true
-        },
-        type: {
-          type: String,
-          lowercase: true,
-          enum: ['cell', 'home', 'work', 'twilio']
-        }
+      number: {
+        type: String,
+        required: true
+      },
+      type: {
+        type: String,
+        lowercase: true,
+        enum: ['cell', 'home', 'work', 'twilio']
       }
     });
     return ContactSchema;
