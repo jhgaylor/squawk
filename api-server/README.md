@@ -1,8 +1,25 @@
 # Squawk Api Server
 
+Please note that nothing is locked down. Only use the server if you are comfortable with how bad it is. To use the server, get a twilio account, and email me that you want in. I'll send you an alpha build and the info you need to get connected.
+
+**To be clear:** there is no security. All you have to do to pretend to be someone is enter their twilio number at the "sign in" page. The application server has to have your twilio api creds. This is not something anyone should consider to be secure. One day this will be fixed but for now, data is going plaintext over the wire and there is no password.
+
 # Environment Variables
 
 `MONGO_URL`: url to the mongodb instance
+
+# Endpoints
+
+## Contacts
+
+### GET /contacts
+
+Returns all contacts.
+
+**Query Params**
+
+`ownerId`: [optional] String objectId of the user whose contacts are being requested
+
 
 ## Gulp Commands
 
