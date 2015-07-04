@@ -5,6 +5,8 @@ var router = require('express').Router();
 // var _ = require('underscore');
 
 router.route('/')
-  .get(function(err, response) {});
+  .get(function(req, res) {
+    res.json({message: 'hooray! welcome to our clients api endpoint!'});
+  });
 
 module.exports = router;
