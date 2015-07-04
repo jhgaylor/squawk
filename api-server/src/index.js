@@ -1,14 +1,14 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
-var ClientRouter = require('./routers/clients');
+var ContactsRouter = require('./routers/contacts');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use('/clients', ClientRouter);
+app.use('/contacts', ContactsRouter);
 
 app.get('/', function(req, res) {
   res.send('Hello World!!!!!!');

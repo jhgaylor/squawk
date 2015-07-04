@@ -1,4 +1,5 @@
 var router = require('express').Router();
+var Contact = require('../models/contact')
 // var Q = require('q');
 // var moment = require('moment');
 // var MongoClient = require('mongodb').MongoClient
