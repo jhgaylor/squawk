@@ -5,6 +5,15 @@ var Models = SquawkServer.Models;
 var SquawkServerApp = request.agent(SquawkServer.app);
 
 describe('Squawk Api Server', function() {
+  it('should be online', function(done) {
+    SquawkServerApp
+      .get('/')
+      .end(function(err, res) {
+        expect(res.body.status).toBe('online');
+        done();
+      })
+  });
+
   describe('Users endpoint', function() {
     beforeAll(function(done) {
       Models.User.create({
