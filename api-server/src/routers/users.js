@@ -2,6 +2,7 @@
   // var Q = require('q');
   // var moment = require('moment');
   // var _ = require('underscore');
+  var util = require('../util');
   function makeRouter (Models) {
     var router = require('express').Router();
     router.route('/')
@@ -16,17 +17,12 @@
     }
 
     function getUserByNumber (req, res) {
-      var number = req.params.number;
-      if (!number || number.length < 10) {
+      var number = util.makeTwilioNumber(req.params.number);
+      if (!number) {
         res.status(400).json({
           error: 'Please specify a phone number /users/+15551234567'
         });
         return;
-      }
-      if (number.length === 10) {
-        number = '+1' + number;
-      } else if (number.length === 11) {
-        number = '+' + number;
       }
 
       Models.User.findOne({'twilio.number': number}, function(err, user) {
