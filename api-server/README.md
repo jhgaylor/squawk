@@ -4,17 +4,17 @@ Please note that nothing is locked down. Only use the server if you are comforta
 
 **To be clear:** there is no security. All you have to do to pretend to be someone is enter their twilio number at the "sign in" page. The application server has to have your twilio api creds. This is not something anyone should consider to be secure. One day this will be fixed but for now, data is going plaintext over the wire and there is no password.
 
-# Environment Variables
+## Environment Variables
 
 `MONGO_URL`: url to the mongodb instance
 
-# Endpoints
+## Endpoints
 
 Incoming requests should have a header `Content-Type` set to `application/json` and send JSON strings in the request body. Responses will be in JSON format and the API will attempt to give intelligent status codes.
 
-## Contacts
+### Contacts
 
-### GET /contacts
+#### GET /contacts
 
 Returns all contacts.
 
