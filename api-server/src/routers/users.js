@@ -5,8 +5,10 @@
   function makeRouter (Models) {
     var router = require('express').Router();
     router.route('/')
-      .get(function(req, res) {
-        res.json({message: 'There is nothing to see here.'});
+      .get(nothing);
+    function nothing (req, res) {
+      res.json({message: 'There is nothing to see here.'});
+    }
       });
     return router;
   }
