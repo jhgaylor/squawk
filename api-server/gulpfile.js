@@ -63,7 +63,7 @@ gulp.task('compile', ['lint', 'test'], function test () {
 // create a docker image from the compiled source code
 // and remove the compiled code
 gulp.task('build', ['compile'], shell.task([
-  'docker rmi ' + docker.imageRepo,
+  // 'docker rmi ' + docker.imageRepo,
   'docker build -t ' + docker.imageRepo + ' .',
   'rm -rf dist/'
 ]));
@@ -74,6 +74,8 @@ gulp.task('push-to-docker-hub', shell.task([
 ]));
 
 gulp.task('deploy-local-mac', shell.task([
+  // 'docker stop ' + docker.containerName,
+  // 'docker rm ' + docker.containerName,
   'docker run -d --name ' + docker.containerName + ' -p 4000:3000 ' + docker.imageRepo + ':latest'
 ]));
 
