@@ -106,7 +106,7 @@ gulp.task('stop-app', function deploy () {
 gulp.task('start-app', function deploy () {
   return gulpSSH
     .exec([
-      'docker run -d --name ' + docker.containerName + ' -p 4000:3000 ' + docker.imageRepo + ':latest',
+      'docker start ' + docker.containerName,
       'docker ps'
     ], {
       filePath: 'start' + moment().format('MMDDYYYY_HHmmss') + '.log'
@@ -114,7 +114,6 @@ gulp.task('start-app', function deploy () {
     .pipe(gulp.dest('logs'));
 });
 
-gulp.task('watch', function watch () {
-  gulp.watch(appSourceBlob, ['lint', 'test']);
-  return 1;
-});
+// gulp.task('watch', function watch () {
+//   return gulp.watch(appSourceBlob, ['lint', 'test']);
+// });
