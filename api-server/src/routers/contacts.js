@@ -5,16 +5,25 @@
   function makeRouter (Models) {
     var router = require('express').Router();
     router.route('/')
-      .get(function(req, response) {
+      .get(function(req, res) {
         var ownerId = req.query.ownerId;
         var selector = {};
         if (ownerId) {
           selector.ownerId = ownerId;
         }
-        Models.Contact.find(selector, function(err, res) {
-          response.json({
-            data: res
+        Models.Contact.find(selector, function(err, contacts) {
+          res.json({
+            data: contacts
           });
+        });
+      })
+      .post(function(req, res) {
+        Models.Contact.create(req.body, function(err, results) {
+          if (err) {
+            res.sendStatus(500).end();
+            return;
+          }
+          res.json(results);
         });
       });
     return router;
