@@ -73,7 +73,7 @@
       }
 
       function reportError (err) {
-        console.error(err.stack);
+        console.error(err && err.stack);
         res.sendStatus(500);
       }
       function report404 (err) {
