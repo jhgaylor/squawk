@@ -18,6 +18,7 @@
         state: data.SmsStatus,
         twilio: data
       });
+      res.status(200).send('<Response></Response>');
     }
     router.route('/incoming')
       .post(processIncomingTwilioMessage);
