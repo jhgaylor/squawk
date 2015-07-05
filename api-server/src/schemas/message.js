@@ -1,11 +1,12 @@
 (function() {
   function makeMessageSchema (mongoose) {
     var MessageSchema = mongoose.Schema({
+      // TODO: add this after some auth has been established
       // user model id. represents which api consumer made the request
-      senderId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-      },
+      // senderId: {
+      //   type: mongoose.Schema.Types.ObjectId,
+      //   required: true
+      // },
       direction: {
         type: String,
         enum: ['out', 'in'],
@@ -33,10 +34,10 @@
       },
       // a hash of to+from+body+sentAt to uniquely identify this message.
       // this is used to prevent duplicate sending of a message.
-      hash: {
-        type: String,
-        required: true
-      },
+      // hash: {
+      //   type: String,
+      //   required: true
+      // },
       // echo twilio's canonical state
       state: {
         type: String,
