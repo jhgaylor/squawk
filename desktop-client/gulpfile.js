@@ -6,9 +6,9 @@ var wiredep = require('wiredep').stream;
 var appSourceBlob = 'src/**/*.js';
 
 gulp.task('bower', function() {
-  gulp.src('./src/index.html')
+  gulp.src('./src/client/index.html')
     .pipe(wiredep())
-    .pipe(gulp.dest('./src'));
+    .pipe(gulp.dest('./src/client'));
 });
 
 gulp.task('default', ['lint'], function defaultTask () {
