@@ -1,0 +1,31 @@
+{
+  "name": "squawk-desktop-client",
+  "version": "0.0.1",
+  "homepage": "https://github.com/jhgaylor/squawk",
+  "authors": [
+    "Jake Gaylor <jhgaylor@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4",
+    "angular": "~1.4.1"
+  },
+  "overrides":{
+    "bootstrap" : {
+         "main": [
+            "dist/css/bootstrap.css"
+          ]
+    }
+  }
+}
