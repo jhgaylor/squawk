@@ -8,7 +8,8 @@ var Models = require('./models')(mongoose);
 
 var ContactsRouter = require('./routers/contacts')(Models);
 var UsersRouter = require('./routers/users')(Models);
-
+var MessagesRouter = require('./routers/messages')(Models);
+var TwilioRouter = require('./routers/twilio')(Models);
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({extended: true}));
@@ -16,6 +17,8 @@ app.use(bodyParser.json());
 
 app.use('/contacts', ContactsRouter);
 app.use('/users', UsersRouter);
+app.use('/messages', MessagesRouter);
+app.use('/twilio', TwilioRouter);
 
 app.get('/', function(req, res) {
   res.json({
