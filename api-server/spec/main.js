@@ -51,7 +51,7 @@ describe('Squawk Api Server', function() {
           .get('/users/' + userNumber)
           .end(function(err, res) {
             expect(err).toBe(null);
-            expect(res.body.data).toBeDefined;
+            expect(res.body.data).toBeDefined();
             expect(res.body.data.twilio.number).toEqual(userNumber)
             done();
           });
