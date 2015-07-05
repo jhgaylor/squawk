@@ -7,10 +7,17 @@
     var router = require('express').Router();
     function processIncomingTwilioMessage (req, res) {
       var data = req.body;
-      console.log('\n\n\n=========');
+      console.log('\n=========');
       console.log(data);
-      console.log('=========\n\n\n');
-      res.sendStatus(200);
+      console.log('=========\n');
+      Models.Message.create({
+        direction: 'in',
+        to: data.To,
+        from: data.From,
+        body: data.Body,
+        state: data.SmsStatus,
+        twilio: data
+      });
     }
     router.route('/incoming')
       .post(processIncomingTwilioMessage);
