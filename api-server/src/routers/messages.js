@@ -92,8 +92,13 @@
         return;
       }
       var messagesPromise = Models.Message.find({
-        to: to,
-        from: from
+        $or: [{
+          to: to,
+          from: from
+        }, {
+          to: from,
+          from: to
+        }]
       }).exec();
       messagesPromise.then(function(data) {
         res.json({
