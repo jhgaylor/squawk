@@ -1,37 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="squawk">
 <head>
   <!-- bower:css -->
   <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css" />
   <!-- endbower -->
+  <style>
+    .active {
+      background-color:black;
+      color: white;
+    }
+  </style>
+  <title>Squawk</title>
 </head>
-<body>
-  <div class="container">
+<body ng-controller="CurrentUser">
+  <div class="container" ng-if="!currentUser._id">
+    <h1>Please Login</h1>
+    <input type="text" ng-model="loginAsNumber" ng-change="updateScopeWithNumber()" class="form-control">
+    <div class="btn btn-primary" ng-click="login()">
+      Login as <span ng-bind="loginAsNumber"></span>
+    </div>
+  </div>
+  <div class="container" ng-if="currentUser._id">
     <div class="row">
-      <div class="col-sm-12">
-        <h1>Hello World!</h1>
+      <div class="col-sm-12 text-center">
+        <h4>{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}: {{currentUser.twilio.number}}</h4>
+        <div class="btn btn-xs btn-default" ng-click="logout()">
+          Logout
+        </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-sm-4">
-        We are using io.js
-        <script>document.  write(process.version)</script>
+      <div class="col-sm-3 contacts-list" ng-controller="ContactsController">
+        <ul>
+          <li ng-repeat="contact in contacts" ng-class="{active: contact._id == activeContact._id}">
+            <span ng-click="activateContact()">
+              {{contact.name}}: {{contact.number}}
+            </span>
+          </li>
+        </ul>
       </div>
-      <div class="col-sm-4">
-        and Electron
-        <script>document.write(process.versions['electron'])</script>.
-      </div>
-      <div class="col-sm-4">
-        And Bootstrap!
+
+      <div class="col-sm-9">
+        <div class="row message-stream" ng-controller="MessageStreamController">
+          <div class="col-sm-12">
+            <ul>
+              <li ng-repeat="message in messages">
+                {{message.direction}}: {{message.body}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row compose-bar" ng-controller="ComposeController">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="outgoingText">
+          </div>
+          <div class="col-sm-2">
+            <div class="btn btn-primary" ng-click="sendSMS()">SMS</div>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
   <!-- bower:js -->
   <script src="../../bower_components/jquery/dist/jquery.js"></script>
   <script src="../../bower_components/angular/angular.js"></script>
   <script src="../../bower_components/moment/moment.js"></script>
-  <script src="../../bower_components/angular-moment/angular-moment.js"></script>
+  <script src="../../bower_components/underscore/underscore.js"></script>
   <!-- endbower -->
 
   <script src="./index.js"></script>
