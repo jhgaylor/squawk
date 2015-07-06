@@ -13,13 +13,24 @@
     body > div{
       overflow: scroll;
     }
-    .active {
-      background-color:black;
-      color: white;
-    }
     .message-stream {
       height: 450px;
+      width: 550px;
       overflow: scroll;
+    }
+    .message {
+      /*width: 60%;*/
+      padding: 5px;
+      margin: 10px;
+    }
+    .message-outgoing {
+      background-color: #3498db;
+      color: #fff;
+    }
+
+    .message-incoming {
+      background-color: #2ecc71;
+      color: #fff;
     }
   </style>
   <title>Squawk</title>
@@ -44,23 +55,23 @@
 
     <div class="row">
       <div class="col-sm-3 contacts-list" ng-controller="ContactsController">
-        <ul>
-          <li ng-repeat="contact in contacts" ng-class="{active: contact._id == activeContact._id}">
-            <span ng-click="activateContact()">
-              {{contact.name}}: {{contact.number}}
-            </span>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="contact in contacts" ng-class="{active: contact._id == activeContact._id}" ng-click="activateContact()">
+            <h4>{{contact.name}}</h4>
+            <h5>{{contact.number}}</h5>
           </li>
         </ul>
       </div>
 
       <div class="col-sm-9">
         <div class="row message-stream" ng-controller="MessageStreamController">
-          <div class="col-sm-12">
-            <ul>
-              <li ng-repeat="message in messages">
-                {{message.direction}}: {{message.body}}
-              </li>
-            </ul>
+          <div class="col-sm-12" ng-repeat="message in messages" ng-class="{'text-right': message.direction=='out'}">
+            <div class="message" ng-class="{
+            'message-outgoing': message.direction=='out',
+            'message-incoming': message.direction=='in'
+            }">
+              {{message.body}}
+            </div>
           </div>
         </div>
         <div class="row compose-bar" ng-controller="ComposeController">
