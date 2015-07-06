@@ -5,9 +5,21 @@
   <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css" />
   <!-- endbower -->
   <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    body > div{
+      overflow: scroll;
+    }
     .active {
       background-color:black;
       color: white;
+    }
+    .message-stream {
+      height: 450px;
+      overflow: scroll;
     }
   </style>
   <title>Squawk</title>
