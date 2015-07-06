@@ -13,6 +13,10 @@
     body > div{
       overflow: scroll;
     }
+    .contacts-list {
+      overflow: scroll;
+      height: 500px;
+    }
     .message-stream {
       height: 450px;
       width: 550px;
@@ -44,7 +48,7 @@
     </div>
   </div>
   <div class="container" ng-if="currentUser._id">
-    <div class="row">
+    <div class="row user-header">
       <div class="col-sm-12 text-center">
         <h4>{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}: {{currentUser.twilio.number}}</h4>
         <div class="btn btn-xs btn-default" ng-click="logout()">
@@ -55,6 +59,11 @@
 
     <div class="row">
       <div class="col-sm-3 contacts-list" ng-controller="ContactsController">
+        <div class="btn btn-success" ng-click="createContact()">
+          <span class="glyphicon glyphicon-plus"></span> Contact
+        </div>
+        <input type="text" class="form-control" placeholder="Name" ng-model="contactName">
+        <input type="text" class="form-control" placeholder="Number" ng-model="contactNumber">
         <ul class="list-group">
           <li class="list-group-item" ng-repeat="contact in contacts" ng-class="{active: contact._id == activeContact._id}" ng-click="activateContact()">
             <h4>{{contact.name}}</h4>

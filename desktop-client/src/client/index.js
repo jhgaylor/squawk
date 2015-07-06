@@ -133,10 +133,18 @@ Squawk.factory('contactsListService', ['$http', '$rootScope', 'currentUserServic
     var contactsList = [];
     var intervalHandle = null;
     var contactsListService = {
+      create: create,
       refresh: refresh,
       start: start,
       stop: stop
     };
+
+    function create (opts) {
+      $http.post('http://squawk:4000/contacts', opts)
+        .then(function(res) {
+          refresh();
+        });
+    }
 
     function setContactList (newList) {
       // if the two objects are the same, do nothing
@@ -185,6 +193,17 @@ Squawk.controller('ContactsController', ['$scope', '$http', 'contactsListService
     });
     $scope.activateContact = function activateContact() {
       activeContactService.set(this.contact);
+    }
+    $scope.createContact = function() {
+      console.log(1);
+      var activeContact = activeContactService.get();
+      console.log(2, activeContact);
+      contactsListService.create({
+        name: $scope.contactName,
+        number: $scope.contactNumber,
+        type: 'cell',
+        ownerId: activeContact.ownerId
+      });
     }
   }
 ]);
