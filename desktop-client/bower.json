@@ -20,8 +20,8 @@
     "bootstrap": "~3.3.4",
     "jquery": "~2.1.4",
     "angular": "~1.4.1",
-    "angular-moment": "~0.10.1",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "underscore": "~1.8.3"
   },
   "overrides": {
     "bootstrap": {
