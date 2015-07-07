@@ -6,17 +6,21 @@ login -> logout -> login -> contacts list is missing. work around: refresh
 # TODO:
 
 * SCSS Build Pipeline
+  * can we stick wiredep to work here? pipe the files through a compiler, concat them in the right order, minify, and embed that into index.html
 * concat + minify pipeline (prod only)
 * gulp watch
 * auth flow (basic auth over https vs oauth (https required?))
 * not broken design
-* distributable build pipeline
+* binary build pipeline
 * features
   * popout conversations?
   * mms
   * group text
   * remove contact
   * notifications (sound, os level)
+  * text replacements
+  * commands (hubot style)
+  * embed mms w/ text snippet w/o downloading the file to the originating device
   * multiple #s per contact
   * multiple twilio numbers per user
   * search
