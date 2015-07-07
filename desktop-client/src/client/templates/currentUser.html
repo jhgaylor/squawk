@@ -1,0 +1,16 @@
+<div class="login-page" ng-if="!currentUser._id">
+  <h1>Please Login</h1>
+  <input type="text" ng-model="loginOptions.number" class="form-control">
+  <div class="btn btn-primary" ng-click="login()">
+    Login as <span ng-bind="currentUser.number"></span>
+  </div>
+</div>
+
+<div class="row user-header" ng-if="currentUser._id">
+  <div class="col-sm-12 text-center">
+    <h4>{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}: {{currentUser.twilio.number}}</h4>
+    <div class="btn btn-xs btn-default" ng-click="logout()">
+      Logout
+    </div>
+  </div>
+</div>

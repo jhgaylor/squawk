@@ -13,59 +13,15 @@
   <!-- <link rel="stylesheet" href="css/main.css"> -->
   <title>Squawk</title>
 </head>
+<!-- Note: I like this CurrentUser pattern up early in the dom
+     to put the user into every scope :)
+-->
 <body ng-controller="CurrentUser">
-  <div class="container" ng-if="!currentUser._id">
-    <h1>Please Login</h1>
-    <input type="text" ng-model="loginOptions.number" class="form-control">
-    <div class="btn btn-primary" ng-click="login()">
-      Login as <span ng-bind="currentUser.number"></span>
-    </div>
-  </div>
-  <div class="container" ng-if="currentUser._id">
-    <div class="row user-header">
-      <div class="col-sm-12 text-center">
-        <h4>{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}: {{currentUser.twilio.number}}</h4>
-        <div class="btn btn-xs btn-default" ng-click="logout()">
-          Logout
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-3 contacts-list" ng-controller="ContactsListController">
-        <div class="btn btn-success" ng-click="createContact()">
-          <span class="glyphicon glyphicon-plus"></span> Contact
-        </div>
-        <input type="text" class="form-control" placeholder="Name" ng-model="contactName">
-        <input type="text" class="form-control" placeholder="Number" ng-model="contactNumber">
-        <ul class="list-group">
-          <li class="list-group-item" ng-repeat="contact in contacts" ng-class="{active: contact._id == activeContact._id}" ng-click="activateContact()">
-            <h4>{{contact.name}}</h4>
-            <h5>{{contact.number}}</h5>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-sm-9">
-        <div class="row message-stream" ng-controller="MessageStreamController">
-          <div class="col-sm-12" ng-repeat="message in messages" ng-class="{'text-right': message.direction=='out'}">
-            <div class="message" ng-class="{
-            'message-outgoing': message.direction=='out',
-            'message-incoming': message.direction=='in'
-            }">
-              {{message.body}}
-            </div>
-          </div>
-        </div>
-        <div class="row compose-bar" ng-controller="ComposeController">
-          <div class="col-sm-10">
-            <input type="text" class="form-control" ng-model="outgoingText">
-          </div>
-          <div class="col-sm-2">
-            <div class="btn btn-primary" ng-click="sendSMS()">SMS</div>
-          </div>
-        </div>
-      </div>
+  <div class="container">
+    <div squawk-current-user class="row"></div>
+    <div class="row" ng-if="currentUser._id">
+      <div squawk-contacts-list class="col-sm-3"></div>
+      <div squawk-message-stream class="col-sm-9"></div>
     </div>
   </div>
 
@@ -80,10 +36,13 @@
   <!-- inject:js -->
   <script src="js/index.js"></script>
   <script src="js/messageStream/service.js"></script>
+  <script src="js/messageStream/directive.js"></script>
   <script src="js/messageStream/controller.js"></script>
   <script src="js/currentUser/service.js"></script>
+  <script src="js/currentUser/header.directive.js"></script>
   <script src="js/currentUser/controller.js"></script>
   <script src="js/contactsList/service.js"></script>
+  <script src="js/contactsList/directive.js"></script>
   <script src="js/contactsList/controller.js"></script>
   <!-- endinject -->
 </body>
