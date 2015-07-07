@@ -2,6 +2,13 @@
 
 login -> logout -> login -> contacts list is missing. work around: refresh
 
+# How to run
+
+```js
+npm install
+gulp watch
+npm start
+```
 
 # TODO:
 
