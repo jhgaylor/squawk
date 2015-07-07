@@ -238,20 +238,16 @@ Squawk.controller('ComposeController', ['$scope', 'currentUserService', 'activeC
 
 Squawk.controller('CurrentUser', ['$scope', 'currentUserService',
   function($scope, currentUserService) {
-    $scope.loginAsNumber = '+1650681';
     $scope.$on('currentUser:updated', function(event, currentUser) {
       $scope.currentUser = currentUser;
     });
     $scope.currentUser = currentUserService.get();
-
-    // NOTE: Why do I have to do this? Why doesn't
-    //       the model bind to the proper scope?
-    $scope.updateScopeWithNumber = function updateScopeWithNumber () {
-      $scope.loginAsNumber = this.loginAsNumber;
+    $scope.loginOptions = {
+      number: '+1650681'
     };
 
     $scope.login = function login () {
-      var number = $scope.loginAsNumber;
+      var number = $scope.loginOptions.number;
       console.warn(number);
       loginNumber = asTwilioNumber(number);
       if (!loginNumber) { return; }
