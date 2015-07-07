@@ -64,12 +64,10 @@ gulp.task('build-css', function buildCss () {
 
 gulp.task('watch', ['build-js', 'build-css'], function() {
   watch(blobs.scss.all, batch(function(events, done) {
-    console.log(1)
     gulp.start('build-css', done);
   }));
 
   watch(blobs.js.all, batch(function(events, done) {
-    console.log(1)
     gulp.start('build-js', done);
   }));
 });
