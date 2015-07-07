@@ -16,7 +16,7 @@
 
 # [Future] Steps to configuring your twilio number to work with Squawk
 
-1) Set up Webhooks to point to http://squawk:4000/twilio/incoming . Upon invitation, you'll receive a hosts file entry to make. This is a temporary step while the API is side wide open.
+1) Set up Webhooks to point to http://squawk:4000/twilio/incoming . Upon invitation, you'll receive a hosts file entry to make. This is a temporary step while the API is wide open.
 
 2) Register an Account using the binary for your operating system.
 
