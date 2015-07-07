@@ -6,8 +6,8 @@
   <input type="text" class="form-control" placeholder="Number" ng-model="contactNumber">
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="contact in contacts" ng-class="{active: contact._id == activeContact._id}" ng-click="activateContact()">
-      <h4>{{contact.name}}</h4>
-      <h5>{{contact.number}}</h5>
+      <p><strong>{{contact.name}}</strong></p>
+      <p>{{contact.number}}</p>
     </li>
   </ul>
 </div>
