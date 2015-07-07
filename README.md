@@ -1,4 +1,4 @@
-![Squawk in use](https://www.dropbox.com/s/xvmyq6c7kar3j9f/Screenshot%202015-07-06%2023.45.05.png)
+![Squawk in use](http://i.imgur.com/Q1Gb04C.png)
 
 # Limitations:
 
