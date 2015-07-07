@@ -5,10 +5,7 @@ login -> logout -> login -> contacts list is missing. work around: refresh
 
 # TODO:
 
-* SCSS Build Pipeline
-  * can we stick wiredep to work here? pipe the files through a compiler, concat them in the right order, minify, and embed that into index.html
 * concat + minify pipeline (prod only)
-* gulp watch
 * auth flow (basic auth over https vs oauth (https required?))
 * not broken design
 * binary build pipeline
