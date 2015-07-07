@@ -32,7 +32,7 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-3 contacts-list" ng-controller="ContactsController">
+      <div class="col-sm-3 contacts-list" ng-controller="ContactsListController">
         <div class="btn btn-success" ng-click="createContact()">
           <span class="glyphicon glyphicon-plus"></span> Contact
         </div>
@@ -79,6 +79,12 @@
   <!-- Built source (`gulp watch` keeps this built) -->
   <!-- inject:js -->
   <script src="js/index.js"></script>
+  <script src="js/messageStream/service.js"></script>
+  <script src="js/messageStream/controller.js"></script>
+  <script src="js/currentUser/service.js"></script>
+  <script src="js/currentUser/controller.js"></script>
+  <script src="js/contactsList/service.js"></script>
+  <script src="js/contactsList/controller.js"></script>
   <!-- endinject -->
 </body>
 </html>
