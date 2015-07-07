@@ -4,7 +4,7 @@
 
 * every outgoing message has to come from a twilio number
 * every user has to give their API info to the squawk server
-  * this could be overcome by having the API info stay on the client and having the client send the twilio msg and enough info to squawk for it to grab the created message from twilio... using the API tokens.... arg, it wont work.
+  * the application could be rewritten in a manner to not need a server but would have to do without the webhooks side of things, which sounds dreadful.
 
 # Steps to configuring your twilio number to work with Squawk
 
