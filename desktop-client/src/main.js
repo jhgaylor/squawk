@@ -1,3 +1,6 @@
+// This is what runs in the main process of Electron.
+// It loads up the window used for the Squawk SMS client
+// It may one day even manage multiple windows! =D
 var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
 
