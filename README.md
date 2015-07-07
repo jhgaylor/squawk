@@ -1,4 +1,4 @@
-![Squawk in use](http://i.imgur.com/Q1Gb04C.png)
+![Squawk in use](/screenshots/squawk_v0.0.1.png)
 
 # Limitations:
 
