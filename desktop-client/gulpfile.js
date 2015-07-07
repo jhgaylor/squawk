@@ -41,3 +41,35 @@ gulp.task('lint', function defaultTask () {
   return gulp.src(appSourceBlob)
       .pipe(jscs());
 });
+
+gulp.task('build-js', function() {
+  // there is no build step, just inject them
+  gulp.src(blobs.html.main)
+    .pipe(inject(gulp.src(blobs.js.all), {relative: true}))
+    .pipe(gulp.dest(blobs.app));
+});
+
+gulp.task('build-css', function buildCss () {
+  // build the sass into css
+  gulp.src(blobs.scss.main)
+    .pipe(watch(blobs.scss.all))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest(blobs.scss.buildTo));
+
+  // inject the built css into the app
+  gulp.src(blobs.html.main)
+    .pipe(inject(gulp.src(blobs.css.all), {relative: true}))
+    .pipe(gulp.dest(blobs.app));
+});
+
+gulp.task('watch', ['build-js', 'build-css'], function() {
+  watch(blobs.scss.all, batch(function(events, done) {
+    console.log(1)
+    gulp.start('build-css', done);
+  }));
+
+  watch(blobs.js.all, batch(function(events, done) {
+    console.log(1)
+    gulp.start('build-js', done);
+  }));
+});
