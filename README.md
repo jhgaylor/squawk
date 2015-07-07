@@ -1,4 +1,4 @@
-![Squawk in use](/screenshots/squawk_v0.0.1.png)
+![Squawk in use](/screenshots/squawk_v0.0.1.png?raw=true)
 
 # Limitations:
 
