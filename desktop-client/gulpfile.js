@@ -5,7 +5,9 @@ var watch = require('gulp-watch')
 var sass = require('gulp-sass');
 var inject = require('gulp-inject');
 var batch = require('gulp-batch');
+var templateCache = require('gulp-angular-templatecache');
 var angularFilesort = require('gulp-angular-filesort');
+
 var wiredep = require('wiredep').stream;
 
 var appSourceBlob = 'src/**/*.js';
@@ -23,7 +25,11 @@ var blobs = {
     main: '/src/client/scss/main.scss'
   },
   js: {
-    all: './src/client/**/*.js'
+    base: './src/client/js',
+    all: './src/client/js/**/*.js'
+  },
+  templates: {
+    all: './src/client/templates/**/*.html'
   }
 };
 
@@ -64,6 +70,13 @@ gulp.task('build-css', function buildCss () {
     .pipe(gulp.dest(blobs.app));
 });
 
+// TODO: determine what value this would bring to me inside of electron
+// gulp.task('build-templates', function() {
+//   return gulp.src(blobs.templates.all)
+//     .pipe(templateCache('templates.js', {standalone: true}))
+//     .pipe(gulp.dest(blobs.js.base));
+// });
+
 gulp.task('watch', ['build-js', 'build-css'], function() {
   watch(blobs.scss.all, batch(function(events, done) {
     gulp.start('build-css', done);
@@ -72,4 +85,8 @@ gulp.task('watch', ['build-js', 'build-css'], function() {
   watch(blobs.js.all, batch(function(events, done) {
     gulp.start('build-js', done);
   }));
+
+  // watch(blobs.templates.all, batch(function(events, done) {
+  //   gulp.start('build-templates');
+  // }));
 });
