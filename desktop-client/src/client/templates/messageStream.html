@@ -1,18 +1,30 @@
 <div class="row message-stream">
-  <div class="col-sm-12" ng-repeat="message in messages" ng-class="{'text-right': message.direction=='out'}">
-    <div class="message" ng-class="{
-    'message-outgoing': message.direction=='out',
-    'message-incoming': message.direction=='in'
-    }">
-      {{message.body}}
+  <div ng-if="activeContact._id">
+    <div class="col-sm-12" ng-show="messages.length" ng-repeat="message in messages" ng-class="{'text-right': message.direction=='out'}">
+      <div class="message" ng-class="{
+      'message-outgoing': message.direction=='out',
+      'message-incoming': message.direction=='in'
+      }">
+        {{message.body}}
+      </div>
+    </div>
+    <div class="col-sm-12" ng-hide="messages.length">
+      <p>No Messages for the selected contact. Send one to kick off the conversation!</p>
     </div>
   </div>
-</div>
-<div class="row compose-bar" ng-controller="ComposeController">
-  <div class="col-sm-10">
-    <input type="text" class="form-control" ng-model="outgoingText">
+
+  <div ng-if="!activeContact._id">
+    <p>Please select a contact from the bar on the left.</p>
   </div>
-  <div class="col-sm-2">
-    <div class="btn btn-primary" ng-click="sendSMS()">SMS</div>
+</div>
+
+<div ng-if="activeContact._id">
+  <div class="row compose-bar" ng-controller="ComposeController">
+    <div class="col-sm-10">
+      <input type="text" class="form-control" ng-model="outgoingText">
+    </div>
+    <div class="col-sm-2">
+      <div class="btn btn-primary" ng-click="sendSMS()">SMS</div>
+    </div>
   </div>
 </div>
