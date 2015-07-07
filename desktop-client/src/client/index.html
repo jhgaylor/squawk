@@ -20,8 +20,8 @@
   <div class="container">
     <div squawk-current-user class="row"></div>
     <div class="row" ng-if="currentUser._id">
-      <div squawk-contacts-list class="col-sm-3"></div>
-      <div squawk-message-stream class="col-sm-9"></div>
+      <div squawk-contacts-list class="col-sm-3 sidebar"></div>
+      <div squawk-message-stream class="col-sm-9 content"></div>
     </div>
   </div>
 
@@ -34,8 +34,8 @@
 
   <!-- Built source (`gulp watch` keeps this built) -->
   <!-- inject:js -->
-  <script src="js/services/activeContact.service.js"></script>
   <script src="js/index.js"></script>
+  <script src="js/services/activeContact.service.js"></script>
   <script src="js/messageStream/service.js"></script>
   <script src="js/messageStream/directive.js"></script>
   <script src="js/messageStream/controller.js"></script>

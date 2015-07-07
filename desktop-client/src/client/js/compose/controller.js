@@ -1,3 +1,4 @@
+var Squawk = angular.module('squawk');
 Squawk.controller('ComposeController', ['$scope', 'currentUserService', 'activeContactService', 'messageStreamService',
   function($scope, currentUserService, activeContactService, messageStreamService) {
     $scope.sendSMS = function sendSMS () {

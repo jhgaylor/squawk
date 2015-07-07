@@ -1,3 +1,4 @@
+var Squawk = angular.module('squawk');
 Squawk.factory('activeContactService', ['$rootScope', function($rootScope) {
   var activeClient = null;
   var activeContactService = {
