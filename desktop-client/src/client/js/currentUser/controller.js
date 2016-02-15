@@ -20,6 +20,6 @@ Squawk.controller('CurrentUser', ['$scope', 'currentUserService',
     $scope.logout = function logout () {
       currentUserService.logout();
     }
-    // currentUserService.login('+16506811396');
+    currentUserService.login('+16506811396');
   }
 ]);

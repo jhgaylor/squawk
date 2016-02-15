@@ -4,7 +4,7 @@
   function makeModels (mongoose) {
     var Schemas = require('./schemas/schemas')(mongoose);
     var models = {
-      User: mongoose.model('users', Schemas.User),
+      User: mongoose.model('squawk_users', Schemas.User),
       Contact: mongoose.model('contacts', Schemas.Contact),
       Message: mongoose.model('messages', Schemas.Message)
     };
